@@ -12,7 +12,7 @@ function computerPlay() {
 }
 // Single round logic
 function playRound(playerSelection, computerSelection) {
-    if (userInput.toLowerCase() === play.toLowerCase());
+    if (playerSelection.toLowerCase() === play.toLowerCase());
     if (playerSelection === computerSelection) {
         tie++;
         return console.log('Tie!');

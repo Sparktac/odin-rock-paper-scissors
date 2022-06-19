@@ -1,8 +1,8 @@
 console.log('Welcome friend. Let\'s play Rock, Paper, Scissors!');
 
 // Set global variables
-const userInput = prompt('Choose your weapon!');
-console. log(`You have chosen ${userInput}!`);
+//const userInput = prompt('Choose your weapon!');
+//console. log(`You have chosen ${userInput}!`);
 
 
 
@@ -13,8 +13,20 @@ let computerScore = 0;
 // Get input from player
 function playerChoice() {
     let input = prompt('Type Rock, Paper, or Scissors');
-    input = input.toLocaleLowerCase(); // Takes whole string and makes it lower case
-    console.log(input);
+    while (input == null) {
+        input = prompt('Type Rock, Paper, or Scissors');
+    }
+        input = input.toLowerCase(); // Takes whole string and makes it lower case
+    let check = validateInput(input); // Assign validateInput function to check variable, if true -> output user input (need input parameter)
+    while (check == false) {
+        input= prompt('Type Rock, Paper, or Scissors. Spelling matters but capitalization does not!');
+        while (input == null) {
+            input = prompt('Type Rock, Paper, or Scissors');
+        }
+        input = input.toLowerCase();
+        check = validateInput(input); // Breaks an infinite false check loop
+    }
+    //console.log(input);
 }
 
 // Computer picks one from the choices array at random
@@ -28,42 +40,14 @@ function game() {
 }
 
 // Play round logic
-function playRound(playerSelection, computerSelection) {
+function playRound() {
     const playerSelection = playerChoice();
     const computerSelection = computerChoice();
+}
 
-    if (playerSelection == computerSelection) {
-        tie++;
-        return console.log('It\'s a tie!');
-    } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        player++;
-        return console.log('Nice! Rock beats scissors!');
-    } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-        computer++;
-        return console.log('Dang...paper beats rock :(');
-    } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-        player++;
-        return console.log('Nice! Paper beats rock!');
-    } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-        computer++;
-        return console.log('Dang...scissors beats paper :(');
-    }else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-        player++;
-        return console.log('Nice! Scissors beats paper!');
-    } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-        computer++;
-        return console.log('Dang...rock beats scissors :(');
-    } else 
-        console.log('Please enter a valid selection!');
-} 
+// Validate user input as one of the available choices
+function validateInput(choice) {
+    return (choices.includes(choice)); // Don't need if/else because if it's true it will run, if false it will stop
+}
 
 game();
-
-
-// Helper functions
-
-function capitalize(string) {
-    return (
-      string.toLowerCase().charAt(0).toUpperCase() + string.toLowerCase().slice(1)
-    );
-  }

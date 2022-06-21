@@ -31,9 +31,9 @@ function computerChoice() {
 
 function game() {
     for (let i = 1; i <= 5; i++) {    // Starts round # at 1 and continues until 5
-        playRound(i);
+        playRound(i);                 // For loop plays rounds 5 times, then ends
     }
-    logWins();
+    logWins();                        // After loop breaks, call logWins() function in console
 }
 
 // Play round logic
@@ -41,8 +41,8 @@ function playRound(round) {
     const playerSelection = playerChoice();            // Assign playerChoice() function to it's own variable
     const computerSelection = computerChoice();        // Assign computerChoice() function to it's own variable
     const winner = checkWinner(playerSelection, computerSelection); // Assign the checkWinner function to it's own variable
-    winners.push(winner);                              // 
-    logRound(playerSelection, computerSelection,winner, round);
+    winners.push(winner);                              
+    logRound(playerSelection, computerSelection, winner, round); // Calls the logRound function inside the playRound function
 }
 
 // Validate user input as one of the available choices

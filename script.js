@@ -1,25 +1,31 @@
-console.log('Hey there! Let\'s play Rock, Paper, Scissors!');
+console.log('Hey there! Let\'s play Rock, Paper, Scissors!\n-------------------------------'); //Backslash n begins a new line
 
 const choices = ['rock', 'paper', 'scissors'];
 const winners = [];
 
+
+function getUserInput(addendum){
+    let instruction = ('Type Rock, Paper, or Scissors');
+    let input = prompt(instruction + addendum); // Prompt the player to select one from the list
+    if (input != null) {
+        input = input.toLowerCase();
+    }    
+    return input
+}
+
 // Get input from player
 function playerChoice() {
-    let input = prompt('Type Rock, Paper, or Scissors'); // Prompt the player to select one from the list
-    while (input == null) {                              // While nothing exists in the input section, continue to prompt with selection
-        input = prompt('Type Rock, Paper, or Scissors'); 
+    let addendum = ('. Spelling matters but capitalization does not!');
+    let input = getUserInput('');    // Pass empty string as an argument into getUserInput function
+    let check = validateInput(input);// Create check variable and run validateInput function w/ 'input' parameter to check if users input is valid
+    while (check === false) {         // If it doesn't match one of the ones from 'choices', prompt again with addendum
+        input = getUserInput(addendum); //Addendum variable passed as an argument into getUserInput parameter
+        check = validateInput(input);
     }
-        input = input.toLowerCase(); // Take whole string and makes it lower case so it matches 'const = choices'
-    let check = validateInput(input); // Create check variable and run validateInput function w/ 'input' parameter to check if users input is valid
-    while (check == false) {         // If it doesn't match one of the ones from 'choices', prompt again with addendum
-        input = prompt('Type Rock, Paper, or Scissors. Spelling matters but capitalization does not!');
-        while (input == null) {      // If input space remains empty, continue to prompt with selection
-            input = prompt('Type Rock, Paper, or Scissors');
-        }
-        input = input.toLowerCase(); // Checks input against input.lowercase to check if true
-        check = validateInput(input); // Breaks an infinite false check loop
+    if (check === null) {
+        return null
     }
-    return (input);                  //Return the final result as the player choice
+    return input;                  //Return the final result as the player choice
 }
 
 
@@ -30,39 +36,52 @@ function computerChoice() {
 }
 
 function game() {
-    for (let i = 1; i <= 5; i++) {    // Starts round # at 1 and continues until 5
-        playRound(i);                 // For loop plays rounds 5 times, then ends
+    let roundSuccessful = true;
+    for (let i = 1; i <= 5; i++) {  
+        if (roundSuccessful == true) {
+            roundSuccessful = playRound(i);       
+        }     
     }
-    logWins();                        // After loop breaks, call logWins() function in console
+    if (roundSuccessful == true)
+    logWins();                     
 }
 
 // Play round logic
 function playRound(round) {
     const playerSelection = playerChoice();            // Assign playerChoice() function to it's own variable
-    const computerSelection = computerChoice();        // Assign computerChoice() function to it's own variable
-    const winner = checkWinner(playerSelection, computerSelection); // Assign the checkWinner function to it's own variable
-    winners.push(winner);                              
-    logRound(playerSelection, computerSelection, winner, round); // Calls the logRound function inside the playRound function
+    if (playerSelection != null) {
+        const computerSelection = computerChoice();        // Assign computerChoice() function to it's own variable
+        const winner = checkWinner(playerSelection, computerSelection); // Assign the checkWinner function to it's own variable
+        winners.push(winner);                              
+        logRound(playerSelection, computerSelection, winner, round); // Calls the logRound function inside the playRound function
+        return true;
+    } else {
+         return false;
+    }
 }
 
 // Validate user input as one of the available choices
 function validateInput(choice) {
+    if (choice == null) {
+        return null
+    } 
     return (choices.includes(choice)); // Don't need if/else because if it's true it will run, if false it will stop
 }
 
 // Game logic to determine winning choice
 function checkWinner(choiceP, choiceC) { // Function to check winner, use of 'OR' to clean up code
-    if (choiceP === choiceC){
-        return ('It was a tie!')
-    } else if (
+    const emoji = String.fromCodePoint(0x1F625); // Sad face emoji variable (NOTE: Capitalization matters on String)
+    if (choiceP === choiceC)
+        return ('It was a tie!')    
+    if (
         (choiceP === 'rock' && choiceC == 'scissors') || 
         (choiceP === 'paper' && choiceC == 'rock') || 
         (choiceP === 'scissors' && choiceC == 'paper')
         ) {
-        return 'Nice! You win this round!'
-    } else {                                    // Don't need to specify the losing side, because if it's not a tie or a win, then it has to be a loss!
-        return 'Aw shucks, the computer won this round.'
+        return 'Nice! You win this round!' 
     }
+
+    return 'Aw shucks, the computer won this round. ' + emoji
 }
 
 function logRound(playerChoice, computerChoice, winner, round) {
@@ -70,7 +89,7 @@ function logRound(playerChoice, computerChoice, winner, round) {
     console.log('Player chose:', playerChoice);
     console.log('Computer chose:', computerChoice);
     console.log(winner);
-    console.log('-------------------------------');     // Creates a visual break line in console between rounds
+    console.log('-------------------------------');
 }
 
 function logWins() {

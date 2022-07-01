@@ -1,11 +1,16 @@
-console.log('Hey there! Let\'s play Rock, Paper, Scissors!\n-------------------------------'); //Backslash n begins a new line
+const optionBtn = document.querySelectorAll('div.optionBtn button');
+const finalResults = document.querySelector('#finalResults');
+const playerPoints = document.querySelector('#playerScore');
+const computerPoints = document.querySelector('#compScore');
+const resetBtn = document.querySelector('#reset');
+
+resetBtn.addEventListener('click',() => location.reload());
+
+optionBtn.forEach(button => {button.addEventListener('click', playRound)});
+finalResults.textContent = logWins();
 
 const choices = ['rock', 'paper', 'scissors'];
 const winners = [];
-
-// resetBtn.addEventListener('click',() => location.reload());
-// optionBtn.forEach(button => { button.addEventListener('click', getPlayerChoice) });
-
 
 function getUserInput(addendum){
     let instruction = ('Type Rock, Paper, or Scissors');

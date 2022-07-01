@@ -59,14 +59,20 @@ h3 {
 }
 
 #reset {
-    background-color: #333232;
+    background-color: rgb(43, 43, 43);
     border: 3px solid blanchedalmond;
     width: 140px;
     height: 30px;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 14px;
     color: white;
     margin-top: 30px;
+}
+
+button:hover {
+    transition-duration: 0.5s;
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 /* Scores and Boxes */
@@ -86,18 +92,28 @@ h3 {
 }
 #playerScore, #compScore {
     display: flex;
-    border: 2px solid gray;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid gray;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
     height: auto;
-    width: 115px;
+    width: 130px;
     padding: 20px;
     margin-bottom: 30px;
 }
 
-#roundResults {
+#finalResults {
     display: flex;
-    border: 2px solid gray;
-    height: 100px;
-    width: 115px;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid gray;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    height: auto;
+    width: 150px;
     padding: 20px;
 }
 

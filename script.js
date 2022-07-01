@@ -3,6 +3,9 @@ console.log('Hey there! Let\'s play Rock, Paper, Scissors!\n--------------------
 const choices = ['rock', 'paper', 'scissors'];
 const winners = [];
 
+// resetBtn.addEventListener('click',() => location.reload());
+// optionBtn.forEach(button => { button.addEventListener('click', getPlayerChoice) });
+
 
 function getUserInput(addendum){
     let instruction = ('Type Rock, Paper, or Scissors');
@@ -101,4 +104,3 @@ function logWins() {
     console.log('Computer Wins:', computerWins);
     console.log('Ties:', ties);
 }
-

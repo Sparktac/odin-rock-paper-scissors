@@ -1,10 +1,61 @@
-.flex-container {
+html {
+    background-color: black;
+    position: relative;
+}
+
+/* Header */
+.header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: goldenrod;
+    font-size: 24px;
 }
 
-button {
+h2 {
+    color: darkseagreen;
+}
+
+h3 {
+    color: mediumslateblue;
+    font-style: italic;
+}
+
+/* Button options */
+.optionBtn {
     display: flex;
-    
+    align-items: center;
+    justify-content: space-evenly;
+    width: 700px;
+    margin: 10px 400px;
+    padding: 10px;
+    border: 1px solid red;
+}
+
+.optionBtn button {
+    background-color: #5ea3f1;
+    border: 3px solid #e4942b;
+    width: 160px;
+    height: 70px;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 48px;
+    color: black;
+}
+
+.resetBtn {
+    display: flex;
+    align-items: center;
+    border: 2px solid red;
+}
+
+#reset {
+    background-color: #333232;
+    border: 3px solid blanchedalmond;
+    width: 140px;
+    height: 30px;
+    font-size: 18px;
+    border-radius: 14px;
+    color: white;
+    margin-top: 40px;
 }

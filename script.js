@@ -22,64 +22,68 @@ optionBtn.forEach(button => {
 function getChoice(e) {
     let playerId = e.currentTarget.id;
     let computerId = computerChoice();
-    playRound(playerId, computerId);
+    checkWinner(playerId, computerId);
+    printChoices(playerId, computerId);
 }
-
-//finalResults.textContent = logWins();
 
 function computerChoice() {
     return choices[Math.floor(Math.random() * choices.length)]; // Return 1 of 3 possible 'choices'. Could sub '3' for 'choices.length' since there are 3 array choices!
     
 }
 
-function playRound(x, y) {
-    const winner = checkWinner(x, y); // Assign the checkWinner function to it's own variable
-
-}
-
-function getCurrentScore () {
-
+function printChoices(playerId, computerId) {
+    //Todo: take parameter values, change to uppercase
+    //something.innerText = 'Player chose' + playerId
+    //something2.innerText = 'Computer chose' + computerId
 }
 
 
-function addToCurrentScore(currentPs, currentCs) {
+function gameOver() {
+    if (playerScore == 5 || compScore == 5) {
+        //Todo: do something like remove eventlisteners, output logWins(), and display win message in textResults div
+    }
+}
+
+function processRound(currentPs, currentCs) {
     playerScore += currentPs;
     compScore += currentCs;
-    let results = (currentPs == 1 ? 'Nice! You won!' : 'The computer won :(')
+    textResults.classList.remove('borderGreen', 'borderRed', 'borderYellow');
+    let results;
+    if (currentPs == 1) {
+        results = 'Nice! You won!'
+        textResults.classList.add('borderGreen');
+    } else {
+        results = 'The computer won :('
+        textResults.classList.add('borderRed')
+    }
     if (currentPs + currentCs == 0) {
-        results = 'It\'s a tie!';
+        results = 'It\'s a tie!'
+        textResults.classList.add('borderYellow')
     }
     textResults.innerText = results;
 }
+
 
 function outputScore() {
     playerPoints.innerText = playerScore;
     computerPoints.innerText = compScore;
 }
 
-// Game logic to determine winning choice
 function checkWinner(choiceP, choiceC) {
 
     if (choiceP === choiceC)
-        addToCurrentScore(0, 0); 
+        processRound(0, 0); 
     else if (
         (choiceP === 'rock' && choiceC == 'scissors') || 
         (choiceP === 'paper' && choiceC == 'rock') || 
         (choiceP === 'scissors' && choiceC == 'paper')
         ) { 
-        addToCurrentScore(1, 0);
+        processRound(1, 0);
     } else {
-        addToCurrentScore(0, 1);  
+        processRound(0, 1);  
     } 
     outputScore();
-}
-
-function logRound(playerChoice, computerChoice, winner, round) {
-    console.log('Round:', round);
-    console.log('Player chose:', playerChoice);
-    console.log('Computer chose:', computerChoice);
-    console.log(winner);
-    console.log('-------------------------------');
+    gameOver();
 }
 
 function logWins() {

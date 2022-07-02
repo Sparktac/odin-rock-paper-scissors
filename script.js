@@ -13,11 +13,11 @@ resetBtn.addEventListener('click',() => location.reload());
 
 
 optionBtn.forEach(button => {
-    button.addEventListener('click', getChoice)
+    button.addEventListener('click', getChoice);
 });
 
 function getChoice(e) {
-    let playerId = e.target.id;
+    let playerId = e.target.getAttribute('id');
     let computerId = computerChoice();
     playRound(playerId, computerId);
 }
@@ -31,7 +31,7 @@ function computerChoice() {
 
 function playRound(x, y) {
     const winner = checkWinner(x, y); // Assign the checkWinner function to it's own variable
-    console.log(winner);
+    
 }
 
 
@@ -47,11 +47,10 @@ function checkWinner(choiceP, choiceC) { // Function to check winner, use of 'OR
         ) {
         document.getElementById('playerScore').innerText = '+1'
         document.getElementById('compScore').innerText = '+0'
-    }
-
-    document.getElementById('playerScore').innerText = '+0'
-    document.getElementById('compScore').innerText = '+1'
-    
+    } else {
+        document.getElementById('playerScore').innerText = '+0'
+        document.getElementById('compScore').innerText = '+1'
+    }  
 }
 
 function logRound(playerChoice, computerChoice, winner, round) {

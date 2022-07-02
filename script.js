@@ -4,9 +4,13 @@ const playerPoints = document.querySelector('#playerScore');
 const computerPoints = document.querySelector('#compScore');
 const resetBtn = document.querySelector('#reset');
 
+
+const choices = ['rock', 'paper', 'scissors'];
+const winners = [];
+
+
 resetBtn.addEventListener('click',() => location.reload());
 
-//xyz.addEventListener('click', userChoice(e));
 
 optionBtn.forEach(button => {
     button.addEventListener('click', getChoice)
@@ -18,24 +22,16 @@ function getChoice(e) {
     playRound(playerId, computerId);
 }
 
-finalResults.textContent = logWins();
+//finalResults.textContent = logWins();
 
-const choices = ['rock', 'paper', 'scissors'];
-const winners = [];
-
-
-
-// Computer picks one from the choices array at random
 function computerChoice() {
     return choices[Math.floor(Math.random() * choices.length)]; // Return 1 of 3 possible 'choices'. Could sub '3' for 'choices.length' since there are 3 array choices!
     
 }
 
-// Play round logic
 function playRound(x, y) {
     const winner = checkWinner(x, y); // Assign the checkWinner function to it's own variable
-    //winners.push(winner);                              
-    logRound(playerSelection, computerSelection, winner, round); // Calls the logRound function inside the playRound function
+    console.log(winner);
 }
 
 
@@ -43,16 +39,19 @@ function playRound(x, y) {
 // Game logic to determine winning choice
 function checkWinner(choiceP, choiceC) { // Function to check winner, use of 'OR' to clean up code
     if (choiceP === choiceC)
-        return ('It was a tie!')    
+        document.querySelectorAll('#playerScore, #compScore').innerText = 'It\'s a tie!'; 
     if (
         (choiceP === 'rock' && choiceC == 'scissors') || 
         (choiceP === 'paper' && choiceC == 'rock') || 
         (choiceP === 'scissors' && choiceC == 'paper')
         ) {
-        return 'Nice! You win this round!' 
+        document.getElementById('playerScore').innerText = '+1'
+        document.getElementById('compScore').innerText = '+0'
     }
 
-    return 'Aw shucks, the computer won this round. '
+    document.getElementById('playerScore').innerText = '+0'
+    document.getElementById('compScore').innerText = '+1'
+    
 }
 
 function logRound(playerChoice, computerChoice, winner, round) {

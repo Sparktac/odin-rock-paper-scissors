@@ -100,7 +100,7 @@ button:hover {
     justify-content: space-around;
     width: 390px;
 }
-#playerScore, #compScore {
+.textbox {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,24 +108,28 @@ button:hover {
     color: white;
     font-size: 20px;
     font-weight: bolder;
-    height: auto;
-    width: 130px;
-    padding: 20px;
-    margin-bottom: 30px;
+    height: 30px;
+    width: 170px;
+    margin-bottom: 20px;
 }
 
-#finalResults {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid gray;
-    color: white;
-    font-size: 20px;
-    font-weight: bolder;
-    height: auto;
+.textResults {
     width: 200px;
-    padding: 20px;
+    border: none;
 }
+
+.borderGreen {
+    border: 2px dotted green;
+}
+
+.borderRed {
+    border: 2px dotted red;
+}
+
+.borderYellow {
+    border: 2px dotted yellow;
+}
+
 
 /* Footer */
 footer {

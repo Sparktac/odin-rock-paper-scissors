@@ -1,12 +1,15 @@
 const optionBtn = document.querySelectorAll('div.optionBtn button');
 const finalResults = document.querySelector('#finalResults');
 const playerPoints = document.querySelector('#playerScore');
+const textResults = document.querySelector('.textResults');
 const computerPoints = document.querySelector('#compScore');
 const resetBtn = document.querySelector('#reset');
 
 
 const choices = ['rock', 'paper', 'scissors'];
 const winners = [];
+let playerScore = 0;
+let compScore = 0;
 
 
 resetBtn.addEventListener('click',() => location.reload());
@@ -17,7 +20,7 @@ optionBtn.forEach(button => {
 });
 
 function getChoice(e) {
-    let playerId = e.target.getAttribute('id');
+    let playerId = e.currentTarget.id;
     let computerId = computerChoice();
     playRound(playerId, computerId);
 }
@@ -31,26 +34,44 @@ function computerChoice() {
 
 function playRound(x, y) {
     const winner = checkWinner(x, y); // Assign the checkWinner function to it's own variable
-    
+
+}
+
+function getCurrentScore () {
+
 }
 
 
+function addToCurrentScore(currentPs, currentCs) {
+    playerScore += currentPs;
+    compScore += currentCs;
+    let results = (currentPs == 1 ? 'Nice! You won!' : 'The computer won :(')
+    if (currentPs + currentCs == 0) {
+        results = 'It\'s a tie!';
+    }
+    textResults.innerText = results;
+}
+
+function outputScore() {
+    playerPoints.innerText = playerScore;
+    computerPoints.innerText = compScore;
+}
 
 // Game logic to determine winning choice
-function checkWinner(choiceP, choiceC) { // Function to check winner, use of 'OR' to clean up code
+function checkWinner(choiceP, choiceC) {
+
     if (choiceP === choiceC)
-        document.querySelectorAll('#playerScore, #compScore').innerText = 'It\'s a tie!'; 
-    if (
+        addToCurrentScore(0, 0); 
+    else if (
         (choiceP === 'rock' && choiceC == 'scissors') || 
         (choiceP === 'paper' && choiceC == 'rock') || 
         (choiceP === 'scissors' && choiceC == 'paper')
-        ) {
-        document.getElementById('playerScore').innerText = '+1'
-        document.getElementById('compScore').innerText = '+0'
+        ) { 
+        addToCurrentScore(1, 0);
     } else {
-        document.getElementById('playerScore').innerText = '+0'
-        document.getElementById('compScore').innerText = '+1'
-    }  
+        addToCurrentScore(0, 1);  
+    } 
+    outputScore();
 }
 
 function logRound(playerChoice, computerChoice, winner, round) {

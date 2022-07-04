@@ -33,50 +33,48 @@ function computerChoice() {
 }
 
 function printChoices(playerId, computerId) {
-    let playerCap = playerId.charAt(0).toUpperCase() + playerId.slice(1);
-    let compCap = computerId.charAt(0).toUpperCase() + computerId.slice(1);
-    playerRound.innerText = 'You chose ' + playerCap + '!'
-    compRound.innerText = 'The computer chose ' + compCap + '!'
+    playerRound.innerText = 'You chose ' + playerId + '!'
+    compRound.innerText = 'The computer chose ' + computerId + '!'
 }
 
 
 function gameOver() {
-    if (playerScore == 5 || compScore == 5) {
-        optionBtn.forEach(button => {
-            button.removeEventListener('click', getChoice)});
-        }
-        logWins();
-        if (playerScore == 5) {
-            roundResults.innerText = 'Congrats! You win!!!'
-        } else roundResults.innerText = 'Aww...better luck next time.'
+    let party = String.fromCharCode(0x1F389); // NOT WORKING
+    optionBtn.forEach(button => {
+        button.removeEventListener('click', getChoice)});
+    logWins();
+    if (playerScore == 5) {
+        roundResults.innerText = party + 'Congrats! You win!!!' + party;
+        roundResults.classList.add('borderGreen');
+    } else {
+        roundResults.innerText = 'Aww...better luck next time.'
+        roundResults.classList.add('borderRed');
+    }
 }
 
 
 function processRound(currentPs, currentCs) {
     playerScore += currentPs;
     compScore += currentCs;
-    roundResults.classList.remove('borderGreen', 'borderRed', 'borderYellow');
-    let emoji = String.fromCharCode(0x1F625) // Use 0x(unicode) format for emojis
+    let emoji = String.fromCharCode(0x1F625)
     let results;
     if (currentPs == 1) {
         results = 'Nice! You won!'
-        roundResults.classList.add('borderGreen')
     } else {
-        results = 'Dang...the computer won ' + emoji // How come this isn't working???
-        roundResults.classList.add('borderRed')
+        results = 'Dang...the computer won ' + emoji; // How come this isn't working???
     }
     if (currentPs + currentCs == 0) {
         results = 'It\'s a tie!'
-        roundResults.classList.add('borderYellow')
     }
     roundResults.innerText = results;
-    gameOver();
 }
 
 
 function outputScore() {
     playerPoints.innerText = playerScore;
     computerPoints.innerText = compScore;
+    if (playerScore == 5 || compScore == 5) 
+        gameOver();
 }
 
 function checkWinner(choiceP, choiceC) {
@@ -94,10 +92,8 @@ function checkWinner(choiceP, choiceC) {
     outputScore();
 }
 
-function logWins(currentPs, currentCs) {
-    let playerWins = currentPs;
-    let computerWins = currentCs;
-    finalResults.innerText = ('Results:');
-    finalResults.innerText = ('Player Wins:', playerWins);
-    finalResults.innerText = ('Computer Wins:', computerWins);
+function logWins() {
+    let playerWins = playerScore;
+    let computerWins = compScore;
+    finalResults.innerText = ('Player Wins: ', playerWins, '\nComputer Wins: ' + computerWins); // NOT CORRECT NEEDS FIXING
 }

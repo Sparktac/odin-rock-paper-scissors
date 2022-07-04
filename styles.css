@@ -89,6 +89,10 @@ button:hover {
 }
 
 /* Scores and Boxes */
+#finalResults {
+    
+}
+
 .labels {
     display: flex;
     width: 370px;
@@ -121,7 +125,7 @@ button:hover {
     justify-content: space-around;
     border: none;
     font-style: italic;
-    color: rgb(182, 245, 221);
+    color: rgb(223, 247, 86);
     font-size: 16px;
     width: 200px;
 }
@@ -142,12 +146,6 @@ button:hover {
     border: 2px dotted red;
     border-radius: 8px;
     box-shadow: 0 0 .7rem red;
-}
-
-.borderYellow {
-    border: 2px dotted yellow;
-    border-radius: 8px;
-    box-shadow: 0 0 .7rem yellow;
 }
 
 

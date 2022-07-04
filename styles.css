@@ -55,8 +55,11 @@ h3 {
     align-items: center;
     background-color: #2a5d97;
     border: 2px solid #e4942b;
+    box-shadow: 0 0 .5rem #f7c436;
     width: 130px;
     height: 120px;
+    margin: 1rem;
+    transition: all 0.9s ease;
     font-size: 30px;
     font-weight: bold;
     border-radius: 50%;
@@ -88,46 +91,63 @@ button:hover {
 /* Scores and Boxes */
 .labels {
     display: flex;
-    width: 420px;
-    justify-content: space-around;
+    width: 370px;
+    justify-content: space-between;
     color: white;
     opacity: 0.8;
-    padding: 4px;
+    padding: 2px;
 }
 
-.score {
+.score, .roundText {
     display: flex;
-    justify-content: space-around;
-    width: 390px;
+    justify-content: space-between;
+    width: 500px;
 }
+
 .textbox {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid gray;
+    border: 2px solid gray;
     color: white;
     font-size: 20px;
     font-weight: bolder;
     height: 30px;
-    width: 170px;
+    width: 200px;
     margin-bottom: 20px;
 }
 
-.textResults {
-    width: 200px;
+.playerText, .compText {
+    justify-content: space-around;
     border: none;
+    font-style: italic;
+    color: rgb(78, 231, 236);
+    font-size: 16px;
+    width: 200px;
+}
+
+.roundResults {
+    width: 270px;
+    border: none;
+
 }
 
 .borderGreen {
     border: 2px dotted green;
+    border-radius: 8px;
+    box-shadow: 0 0 .7rem green;
 }
 
 .borderRed {
     border: 2px dotted red;
+    border-radius: 8px;
+    box-shadow: 0 0 .7rem red;
 }
 
 .borderYellow {
     border: 2px dotted yellow;
+    border-radius: 8px;
+    box-shadow: 0 0 .7rem yellow;
 }
 
 

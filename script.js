@@ -1,8 +1,10 @@
 const optionBtn = document.querySelectorAll('div.optionBtn button');
-const finalResults = document.querySelector('#finalResults');
 const playerPoints = document.querySelector('#playerScore');
-const textResults = document.querySelector('.textResults');
 const computerPoints = document.querySelector('#compScore');
+const playerRound = document.querySelector('#playerRound');
+const compRound = document.querySelector('#compRound');
+const roundResults = document.querySelector('.roundResults');
+const finalResults = document.querySelector('#finalResults');
 const resetBtn = document.querySelector('#reset');
 
 
@@ -32,9 +34,10 @@ function computerChoice() {
 }
 
 function printChoices(playerId, computerId) {
-    //Todo: take parameter values, change to uppercase
-    //something.innerText = 'Player chose' + playerId
-    //something2.innerText = 'Computer chose' + computerId
+    let playerCap = playerId.charAt(0).toUpperCase() + playerId.slice(1);
+    let compCap = computerId.charAt(0).toUpperCase() + computerId.slice(1);
+    playerRound.innerText = 'You chose ' + playerCap + '!'
+    compRound.innerText = 'The computer chose ' + compCap + '!'
 }
 
 
@@ -47,20 +50,21 @@ function gameOver() {
 function processRound(currentPs, currentCs) {
     playerScore += currentPs;
     compScore += currentCs;
-    textResults.classList.remove('borderGreen', 'borderRed', 'borderYellow');
+    roundResults.classList.remove('borderGreen', 'borderRed', 'borderYellow');
+    let emoji = String.fromCharCode(0x1F625) // Use 0x(unicode) format for emojis
     let results;
     if (currentPs == 1) {
         results = 'Nice! You won!'
-        textResults.classList.add('borderGreen');
+        roundResults.classList.add('borderGreen')
     } else {
-        results = 'The computer won :('
-        textResults.classList.add('borderRed')
+        results = 'Dang...the computer won ' + emoji // How come this isn't working???
+        roundResults.classList.add('borderRed')
     }
     if (currentPs + currentCs == 0) {
         results = 'It\'s a tie!'
-        textResults.classList.add('borderYellow')
+        roundResults.classList.add('borderYellow')
     }
-    textResults.innerText = results;
+    roundResults.innerText = results;
 }
 
 

@@ -9,7 +9,6 @@ const resetBtn = document.querySelector('#reset');
 
 
 const choices = ['rock', 'paper', 'scissors'];
-const winners = [];
 let playerScore = 0;
 let compScore = 0;
 
@@ -43,9 +42,15 @@ function printChoices(playerId, computerId) {
 
 function gameOver() {
     if (playerScore == 5 || compScore == 5) {
-        //Todo: do something like remove eventlisteners, output logWins(), and display win message in textResults div
-    }
+        optionBtn.forEach(button => {
+            button.removeEventListener('click', getChoice)});
+        }
+        logWins();
+        if (playerScore == 5) {
+            roundResults.innerText = 'Congrats! You win!!!'
+        } else roundResults.innerText = 'Aww...better luck next time.'
 }
+
 
 function processRound(currentPs, currentCs) {
     playerScore += currentPs;
@@ -65,6 +70,7 @@ function processRound(currentPs, currentCs) {
         roundResults.classList.add('borderYellow')
     }
     roundResults.innerText = results;
+    gameOver();
 }
 
 
@@ -74,7 +80,6 @@ function outputScore() {
 }
 
 function checkWinner(choiceP, choiceC) {
-
     if (choiceP === choiceC)
         processRound(0, 0); 
     else if (
@@ -87,15 +92,12 @@ function checkWinner(choiceP, choiceC) {
         processRound(0, 1);  
     } 
     outputScore();
-    gameOver();
 }
 
-function logWins() {
-    let playerWins = winners.filter((item) => item == 'Nice! You win this round!').length;  // Creates new arrays for each string, runs items against the max number
-    let computerWins = winners.filter((item) => item == 'Aw shucks, the computer won this round.').length; // and checks the length
-    let ties = winners.filter((item) => item == 'It was a tie!').length;
-    console.log('Results:');                           // Displays current score for each array at the end
-    console.log('Player Wins:', playerWins);
-    console.log('Computer Wins:', computerWins);
-    console.log('Ties:', ties);
+function logWins(currentPs, currentCs) {
+    let playerWins = currentPs;
+    let computerWins = currentCs;
+    finalResults.innerText = ('Results:');
+    finalResults.innerText = ('Player Wins:', playerWins);
+    finalResults.innerText = ('Computer Wins:', computerWins);
 }

@@ -28,7 +28,7 @@ function getChoice(e) {
 }
 
 function computerChoice() {
-    return choices[Math.floor(Math.random() * choices.length)]; // Return 1 of 3 possible 'choices'. Could sub '3' for 'choices.length' since there are 3 array choices!
+    return choices[Math.floor(Math.random() * choices.length)];
     
 }
 
@@ -39,12 +39,11 @@ function printChoices(playerId, computerId) {
 
 
 function gameOver() {
-    let party = String.fromCharCode(0x1F389); // NOT WORKING
     optionBtn.forEach(button => {
         button.removeEventListener('click', getChoice)});
     logWins();
     if (playerScore == 5) {
-        roundResults.innerText = party + 'Congrats! You win!!!' + party;
+        roundResults.innerText = party + 'Congrats! You win!!!';
         roundResults.classList.add('borderGreen');
     } else {
         roundResults.innerText = 'Aww...better luck next time.'
@@ -56,12 +55,11 @@ function gameOver() {
 function processRound(currentPs, currentCs) {
     playerScore += currentPs;
     compScore += currentCs;
-    let emoji = String.fromCharCode(0x1F625)
     let results;
     if (currentPs == 1) {
-        results = 'Nice! You won!'
+        results = 'Nice! You won! ' + currentPs + ' beats ' + currentCs + '!' // NOT CORRECT
     } else {
-        results = 'Dang...the computer won ' + emoji; // How come this isn't working???
+        results = 'Dang...the computer won, ' + currentCs + ' beats ' + currentPs + '.' // NOT CORRECT
     }
     if (currentPs + currentCs == 0) {
         results = 'It\'s a tie!'
@@ -95,5 +93,5 @@ function checkWinner(choiceP, choiceC) {
 function logWins() {
     let playerWins = playerScore;
     let computerWins = compScore;
-    finalResults.innerText = ('Player Wins: ', playerWins, '\nComputer Wins: ' + computerWins); // NOT CORRECT NEEDS FIXING
+    finalResults.innerText = ('Results: \nPlayer wins: ' + playerWins + '\nComputer wins: ' + computerWins);
 }

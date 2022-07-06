@@ -1,3 +1,8 @@
+@font-face {
+    font-family: ARCADECLASSIC;
+    src: url(./fonts/ARCADECLASSIC.TTF);
+}
+
 html {
     background-color: rgb(24, 23, 23);
     height: 100vh;
@@ -25,6 +30,8 @@ a:hover {
 }
 
 h1 {
+    font-family: ARCADECLASSIC;
+    font-size: 48px;
     margin-bottom: -4px;
 }
 
@@ -64,6 +71,10 @@ h3 {
     font-weight: bold;
     border-radius: 50%;
     color: black;
+}
+
+.optionBtn button:hover {
+    background-color: rgb(80, 168, 80);
 }
 
 .resetBtn {

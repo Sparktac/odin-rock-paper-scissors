@@ -31,7 +31,6 @@ a:hover {
 
 h1 {
     font-family: ARCADECLASSIC;
-    font-size: 48px;
     margin-bottom: -4px;
 }
 
@@ -43,7 +42,7 @@ h2 {
 h3 {
     color: mediumslateblue;
     font-style: italic;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 /* Button options */
@@ -74,7 +73,7 @@ h3 {
 }
 
 .optionBtn button:hover {
-    background-color: rgb(80, 168, 80);
+    background-color: rgb(79, 167, 79);
 }
 
 .resetBtn {
@@ -106,6 +105,26 @@ button:hover {
     width: 180px;
     font-size: 18px;
     font-weight: 500;
+    padding-left: 40px;
+}
+
+#finalResults > .rainbow-border {
+    --angle: 0deg;
+    border: 2px solid;
+    border-image: conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    animation: 10s rotate linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        --angle: 360deg;
+    }
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
 }
 
 .labels {

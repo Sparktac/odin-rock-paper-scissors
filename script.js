@@ -43,7 +43,7 @@ function gameOver() {
         button.removeEventListener('click', getChoice)});
     logWins();
     if (playerScore == 5) {
-        roundResults.innerText = party + 'Congrats! You win!!!';
+        roundResults.innerText ='Congrats! You win!!!';
         roundResults.classList.add('borderGreen');
     } else {
         roundResults.innerText = 'Aww...better luck next time.'
@@ -94,4 +94,5 @@ function logWins() {
     let playerWins = playerScore;
     let computerWins = compScore;
     finalResults.innerText = ('Results: \nPlayer wins: ' + playerWins + '\nComputer wins: ' + computerWins);
+    finalResults.classList.add('rainbow-border'); // Not adding? ID vs class?
 }

@@ -2,7 +2,6 @@
 Odin - Rock, Paper, Scissors game
 
 Learning goals:
-- Create a rock, paper, scissors game to be played in DevTools console
+- Create a rock, paper, scissors game with complete function UI
 - Utilize Javascript 
 - Use of let, const, function, and more
-- No HTML doc needed atm

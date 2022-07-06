@@ -57,12 +57,12 @@ function processRound(currentPs, currentCs) {
     compScore += currentCs;
     let results;
     if (currentPs == 1) {
-        results = 'Nice! You won! ' + currentPs + ' beats ' + computerChoice() + '!'; // NOT CORRECT
+        results = 'Nice! You won! ' + currentPs + ' beats ' + currentCs + '!'; // NOT CORRECT
     } else {
-        results = 'Dang...the computer won, ' + computerChoice() + ' beats ' + currentPs + '.'; // NOT CORRECT
+        results = 'Dang...the computer won, ' + currentCs + ' beats ' + currentPs + '.'; // NOT CORRECT
     }
     if (currentPs + currentCs == 0) {
-        results = 'It\'s a tie! You chose ' + currentPs + ' and the computer chose ' + computerChoice() + '!';
+        results = 'It\'s a tie! You chose ' + currentPs + ' and the computer chose ' + currentCs + '!'; // NOT CORRECT
     }
     roundResults.innerText = results;
 }

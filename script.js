@@ -1,8 +1,6 @@
 const optionBtn = document.querySelectorAll('div.optionBtn button');
 const playerPoints = document.querySelector('#playerScore');
 const computerPoints = document.querySelector('#compScore');
-const playerRound = document.querySelector('#playerRound');
-const compRound = document.querySelector('#compRound');
 const roundResults = document.querySelector('.roundResults');
 const finalResults = document.querySelector('#finalResults');
 const resetBtn = document.querySelector('#reset');
@@ -25,17 +23,11 @@ function getChoice(e) {
     let playerId = e.currentTarget.id;
     let computerId = computerChoice();
     checkWinner(playerId, computerId);
-    printChoices(playerId, computerId);
 }
 
 function computerChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
     
-}
-
-function printChoices(playerId, computerId) {
-    playerRound.innerText = 'You chose ' + playerId + '!'
-    compRound.innerText = 'The computer chose ' + computerId + '!'
 }
 
 

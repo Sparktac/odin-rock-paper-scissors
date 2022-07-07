@@ -155,19 +155,11 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.playerText, .compText {
-    justify-content: space-around;
-    border: none;
-    font-style: italic;
-    color: rgb(223, 247, 86);
-    font-size: 16px;
-    width: 200px;
-}
-
 .roundResults {
     border: none;
     width: 600px;
     height: 50px;
+    margin: 18px 0px 50px;
 }
 
 .borderGreen {
@@ -192,7 +184,7 @@ footer {
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    margin: 20px -8px -8px;
+    margin: 22px -8px -8px;
     height: 40px;
     padding: 8px;
     background-color: rgb(26, 37, 46);

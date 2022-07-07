@@ -108,7 +108,7 @@ button:hover {
     padding-left: 40px;
 }
 
-#finalResults > .rainbow-border {
+#finalResults.rainbow-border {
     --angle: 0deg;
     border: 2px solid;
     border-image: conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;

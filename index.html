@@ -15,10 +15,10 @@
         <h3>First to 5 wins!</h3>
 
     <div class="optionBtn">
-        <button id="rock" data-key="1" class="key"><img src="images/rock.png" alt="cartoon rock" style="width: 100px; height: auto;"></button>
-        <button id="paper" data-key="2" class="key"><img src="images/paper.png" alt="cartoon toilet paper" style="width: 80px; height: auto; padding-left: 6px;"></button>
+        <button id="rock"><img src="images/rock.png" alt="cartoon rock" data-audio="rock" style="width: 100px; height: auto;"></button>
+        <button id="paper"><img src="images/paper.png" alt="cartoon toilet paper"  data-audio="paper" style="width: 80px; height: auto; padding-left: 6px;"></button>
         <!--Toilet paper png credit belongs to artist Hideo Furukawa, courtesy of pngitem.com-->
-        <button id="scissors" data-key="3" class="key"><img src="images/scissors.png" alt="cartoon scissors" style="width: 90px; height: auto;"></button>
+        <button id="scissors"><img src="images/scissors.png" alt="cartoon scissors" data-audio="scissors" style="width: 90px; height: auto;"></button>
     </div>
 
     <div class="labels">
@@ -38,7 +38,7 @@
 
     <div class="roundResults textbox"></div>
 
-    <div id="finalResults" class="textbox rainbow-border"></div>
+    <div id="finalResults" class="textbox"></div>
 
     <div class="resetBtn">
         <button id="reset">Play Again!</button>
@@ -46,36 +46,15 @@
 
 </div>
 
-<audio data-key="1" src="./audio/rock.mp3"></audio>
-<audio data-key="2" src="./audio/paper.mp3"></audio>
-<audio data-key="3" src="./audio/scissors.mp3"></audio>
+<audio data-audio="rock" src="./audio/rock.mp3"></audio>
+<audio data-audio="paper" src="./audio/paper.mp3"></audio>
+<audio data-audio="scissors" src="./audio/scissors.mp3"></audio>
 
 <footer>
     <span>Crafted by *<a href="https://github.com/Sparktac" target="_blank"><i>Sparktac</i></a>*</span>
     <span>Copyright &copy; The Odin Project 2022</span>
 </footer>
 
-<script src="script.js">
-
-function playSound(e) {
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // Selects the correct audio file associated with datakey
-    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);    // Selects the key class that corresponds to correct keypress
-    if (!audio) return; // Stop the function from running altogether
-    audio.currentTime = 0; // Resets the audio file so it can be played fast
-    audio.play();
-    key.classList.add('playing')
-}
-
-function removeTransition(e) {
-    if (e.propertyName !== 'transform') return; // Skips it if it's NOT a transform 
-    this.classList.remove('playing');
-}
-
-
-const keys = document.querySelectorAll('.key');
-    keys.forEach(key => key.addEventListener('transitionend', removeTransition))  //Must use forEach() function BEFORE event listener because it's an array
-    window.addEventListener('click', playSound);
-
-</script>
+<script src="script.js"></script>
 </body>
 </html>

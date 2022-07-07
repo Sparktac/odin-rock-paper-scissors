@@ -15,6 +15,7 @@ let compScore = 0;
 
 resetBtn.addEventListener('click',() => location.reload());
 
+imgListener();
 
 optionBtn.forEach(button => {
     button.addEventListener('click', getChoice);
@@ -52,17 +53,17 @@ function gameOver() {
 }
 
 
-function processRound(currentPs, currentCs) {
+function processRound(currentPs, currentCs, playerSel, compSel) {
     playerScore += currentPs;
-    compScore += currentCs;
+    compScore += currentCs; 
     let results;
     if (currentPs == 1) {
-        results = 'Nice! You won! ' + currentPs + ' beats ' + currentCs + '!'; // NOT CORRECT
+        results = 'Nice! You won! ' + capitalizeText(playerSel) + ' beats ' + compSel + '!'; // NOT CORRECT
     } else {
-        results = 'Dang...the computer won, ' + currentCs + ' beats ' + currentPs + '.'; // NOT CORRECT
+        results = 'Dang...the computer won, ' + compSel + ' beats ' + playerSel + '.'; // NOT CORRECT
     }
     if (currentPs + currentCs == 0) {
-        results = 'It\'s a tie! You chose ' + currentPs + ' and the computer chose ' + currentCs + '!'; // NOT CORRECT
+        results = 'It\'s a tie! You chose ' + playerSel + ' and the computer chose ' + compSel + '!'; // NOT CORRECT
     }
     roundResults.innerText = results;
 }
@@ -77,15 +78,15 @@ function outputScore() {
 
 function checkWinner(choiceP, choiceC) {
     if (choiceP === choiceC)
-        processRound(0, 0); 
+        processRound(0, 0, choiceP, choiceC); 
     else if (
         (choiceP === 'rock' && choiceC == 'scissors') || 
         (choiceP === 'paper' && choiceC == 'rock') || 
         (choiceP === 'scissors' && choiceC == 'paper')
         ) { 
-        processRound(1, 0);
+        processRound(1, 0, choiceP, choiceC);
     } else {
-        processRound(0, 1);  
+        processRound(0, 1, choiceP, choiceC);  
     } 
     outputScore();
 }
@@ -95,4 +96,24 @@ function logWins() {
     let computerWins = compScore;
     finalResults.innerText = ('Results: \nPlayer wins: ' + playerWins + '\nComputer wins: ' + computerWins);
     finalResults.classList.add('rainbow-border'); // Not adding? (ID vs class?)
+}
+
+function capitalizeText(str) {
+    str = str.charAt(0).toUpperCase() + str.slice(1);
+    return (str);
+}
+
+// Audio functions
+
+function imgListener() {
+    const imgs = document.querySelectorAll('.optionBtn img');
+    imgs.forEach(img => img.addEventListener('click', playSound));
+}
+
+function playSound(e) {
+    let clickedButton = e.target;
+    let dataAudio = clickedButton.getAttribute('data-audio');
+    const audio = document.querySelector('audio[data-audio="'+ dataAudio +'"]');
+    audio.currentTime = 0.5;
+    audio.play();
 }

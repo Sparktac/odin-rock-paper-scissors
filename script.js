@@ -64,8 +64,10 @@ function processRound(currentPs, currentCs, playerSel, compSel) {
 function outputScore() {
     playerPoints.innerText = playerScore;
     computerPoints.innerText = compScore;
-    if (playerScore == 5 || compScore == 5) 
+    if (playerScore == 5 || compScore == 5) {
         gameOver();
+        removeSound();
+    }
 }
 
 function checkWinner(choiceP, choiceC) {
@@ -108,4 +110,9 @@ function playSound(e) {
     const audio = document.querySelector('audio[data-audio="'+ dataAudio +'"]');
     audio.currentTime = 0.5;
     audio.play();
+}
+
+function removeSound() {
+    const imgs = document.querySelectorAll('.optionBtn img');
+    imgs.forEach(img => img.removeEventListener('click', playSound));
 }

@@ -183,9 +183,11 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    bottom: 0px;
     font-size: 16px;
-    margin: 22px -8px -8px;
     height: 40px;
+    width: 100%;
     padding: 8px;
     background-color: rgb(26, 37, 46);
 }

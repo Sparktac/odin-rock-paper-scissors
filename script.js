@@ -50,12 +50,12 @@ function processRound(currentPs, currentCs, playerSel, compSel) {
     compScore += currentCs; 
     let results;
     if (currentPs == 1) {
-        results = 'Nice! You won! ' + capitalizeText(playerSel) + ' beats ' + compSel + '!'; // NOT CORRECT
+        results = 'Nice! You won! ' + capitalizeText(playerSel) + ' beats ' + compSel + '!';
     } else {
-        results = 'Dang...the computer won, ' + compSel + ' beats ' + playerSel + '.'; // NOT CORRECT
+        results = 'Dang...the computer won, ' + compSel + ' beats ' + playerSel + '.';
     }
     if (currentPs + currentCs == 0) {
-        results = 'It\'s a tie! You chose ' + playerSel + ' and the computer chose ' + compSel + '!'; // NOT CORRECT
+        results = 'It\'s a tie! You chose ' + playerSel + ' and the computer chose ' + compSel + '!';
     }
     roundResults.innerText = results;
 }
